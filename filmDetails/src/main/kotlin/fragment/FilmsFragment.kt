@@ -13,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmDetails.R
 import kotlinx.coroutines.launch
+import viewModel.InfoFilmViewModel
+import viewModel.InfoFilmViewModelFactory
 
 private const val KEY_ID = "keyId"
 

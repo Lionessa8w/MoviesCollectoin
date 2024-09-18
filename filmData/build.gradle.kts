@@ -47,11 +47,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     //gson
@@ -61,7 +61,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
 
-    val koin_version = "4.0.0-RC2"
-    implementation("io.insert-koin:koin-core:$koin_version")
-    testImplementation("io.insert-koin:koin-test:$koin_version")
+//    val koin_version = "4.0.0-RC2"
+//    implementation("io.insert-koin:koin-core:$koin_version")
+//    testImplementation("io.insert-koin:koin-test:$koin_version")
 }

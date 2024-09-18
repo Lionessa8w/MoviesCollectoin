@@ -46,7 +46,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    val koin_version = "4.0.0-RC2"
-    implementation("io.insert-koin:koin-core:$koin_version")
-    testImplementation("io.insert-koin:koin-test:$koin_version")
+//    val koin_version = "4.0.0-RC2"
+//    implementation("io.insert-koin:koin-core:$koin_version")
+//    testImplementation("io.insert-koin:koin-test:$koin_version")
+
+    implementation(project(":filmData"))
+    implementation(project(":filmsList"))
 }

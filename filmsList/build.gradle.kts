@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
-
 }
 
 android {
-    namespace = "com.example.moviescollectoin.filmDetails"
+    namespace = "com.example.moviescollectoin.filmsList"
     compileSdk = 34
 
     defaultConfig {
@@ -47,17 +45,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
 //    val koin_version = "4.0.0-RC2"
 //    implementation("io.insert-koin:koin-core:$koin_version")
 //    testImplementation("io.insert-koin:koin-test:$koin_version")
 
     implementation(project(":filmData"))
-    implementation(project(":filmDomain"))
-
+    implementation(project(":filmDetails"))
 }
