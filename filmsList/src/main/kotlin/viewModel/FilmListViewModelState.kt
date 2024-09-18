@@ -1,6 +1,5 @@
 package viewModel
 
-import model.FilmsModel
 
 sealed class FilmListViewModelState {
     object Loading : FilmListViewModelState()
@@ -9,6 +8,6 @@ sealed class FilmListViewModelState {
 
     class Success(
         val genresList: List<String>,
-        val filmsList: List<FilmsModel>
+        val filmsList: List<Unit> // todo change this
     ) : FilmListViewModelState()
 }

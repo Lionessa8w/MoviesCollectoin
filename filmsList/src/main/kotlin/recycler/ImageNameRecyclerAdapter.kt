@@ -9,12 +9,10 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmsList.R
-import model.FilmsModel
 
 class ImageNameRecyclerAdapter(
-    private val filmListModel: List<FilmsModel>,
+    private val filmListModel: List<Unit>, // todo change this
     private val onCardClicked: (id: Int) -> Unit,
     private val onLikeClicked: (id: Int) -> Unit,
     private val onIgnoreClicked: (id: Int) -> Unit,
@@ -42,80 +40,80 @@ class ImageNameRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ImageNameViewHolder, position: Int) {
         renderLike(holder, position)
-        holder.filmLocalized.text = filmListModel[position].localizedName
-        Glide
-            .with(holder.filmImage.context)
-            .load(filmListModel[position].imageUrl)
-            .centerCrop()
-            .placeholder(R.drawable.cat)
-            .into(holder.filmImage)
-        holder.imageFilmRoot.setOnClickListener {
-            filmListModel[position].id?.let {
-                onCardClicked(it)
-            }
-        }
-        holder.imageLike.setOnClickListener {
-            filmListModel[position].id?.let { id ->
-                onLikeClicked(id)
-                Log.d("likeClick", "работает")
-                checkLike(holder, position)
-                Log.d("checkLike", "работает ")
-
-            }
-        }
-        holder.imageIgnore.setOnClickListener {
-            filmListModel[position].id?.let { id ->
-                onIgnoreClicked(id)
-                checkIgnore(holder, position)
-            }
-        }
+//        holder.filmLocalized.text = filmListModel[position].localizedName
+//        Glide
+//            .with(holder.filmImage.context)
+//            .load(filmListModel[position].imageUrl)
+//            .centerCrop()
+//            .placeholder(R.drawable.cat)
+//            .into(holder.filmImage)
+//        holder.imageFilmRoot.setOnClickListener {
+//            filmListModel[position].id?.let {
+//                onCardClicked(it)
+//            }
+//        }
+//        holder.imageLike.setOnClickListener {
+//            filmListModel[position].id?.let { id ->
+//                onLikeClicked(id)
+//                Log.d("likeClick", "работает")
+//                checkLike(holder, position)
+//                Log.d("checkLike", "работает ")
+//
+//            }
+//        }
+//        holder.imageIgnore.setOnClickListener {
+//            filmListModel[position].id?.let { id ->
+//                onIgnoreClicked(id)
+//                checkIgnore(holder, position)
+//            }
+//        }
 
 
     }
 
     fun checkLike(holder: ImageNameViewHolder, position: Int) {
-        filmListModel[position].isLiked = !filmListModel[position].isLiked
+//        filmListModel[position].isLiked = !filmListModel[position].isLiked
         renderLike(holder, position)
     }
 
     fun checkIgnore(holder: ImageNameViewHolder, position: Int) {
-        filmListModel[position].isIgnore = !filmListModel[position].isIgnore
+//        filmListModel[position].isIgnore = !filmListModel[position].isIgnore
         renderIgnore(holder, position)
     }
 
     private fun renderLike(holder: ImageNameViewHolder, position: Int) {
-        if (filmListModel[position].isLiked) {
-            holder.imageLike.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    holder.imageLike.context,
-                    R.drawable.baseline_favorite_24
-                )
-            )
-        } else {
-            holder.imageLike.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    holder.imageLike.context,
-                    R.drawable.baseline_0
-                )
-            )
-        }
+//        if (filmListModel[position].isLiked) {
+//            holder.imageLike.setImageDrawable(
+//                AppCompatResources.getDrawable(
+//                    holder.imageLike.context,
+//                    R.drawable.baseline_favorite_24
+//                )
+//            )
+//        } else {
+//            holder.imageLike.setImageDrawable(
+//                AppCompatResources.getDrawable(
+//                    holder.imageLike.context,
+//                    R.drawable.baseline_0
+//                )
+//            )
+//        }
     }
 
     private fun renderIgnore(holder: ImageNameViewHolder, position: Int) {
-        if (filmListModel[position].isIgnore) {
-            holder.imageIgnore.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    holder.imageIgnore.context,
-                    R.drawable.baseline_ignore_red
-                )
-            )
-        } else {
-            holder.imageIgnore.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    holder.imageIgnore.context,
-                    R.drawable.baseline_ignore_0
-                )
-            )
-        }
+//        if (filmListModel[position].isIgnore) {
+//            holder.imageIgnore.setImageDrawable(
+//                AppCompatResources.getDrawable(
+//                    holder.imageIgnore.context,
+//                    R.drawable.baseline_ignore_red
+//                )
+//            )
+//        } else {
+//            holder.imageIgnore.setImageDrawable(
+//                AppCompatResources.getDrawable(
+//                    holder.imageIgnore.context,
+//                    R.drawable.baseline_ignore_0
+//                )
+//            )
+//        }
     }
 }
