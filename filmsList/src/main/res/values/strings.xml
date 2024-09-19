@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="text_error">Нет подключения к сети</string>
-    <string name="button_error">Обновить</string>
+    <string name="text_error">Ошибка подключения сети</string>
+    <string name="button_error">ПОВТОРИТЬ</string>
     <string name="description">description</string>
 </resources>

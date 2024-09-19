@@ -11,8 +11,6 @@ data class FilmsModel (
     @SerializedName("rating") var rating: Double? = null,
     @SerializedName("image_url") var imageUrl: String? = null,
     @SerializedName("description") var description: String? = null,
-    @SerializedName("genres") var genres: List<String> = arrayListOf(),
-    var isLiked: Boolean = false,
-    var isIgnore: Boolean= false
+    @SerializedName("genres") var genres: List<String> = arrayListOf()
 
 )

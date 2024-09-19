@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmDetails.R
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import viewModel.InfoFilmViewModel
-import viewModel.InfoFilmViewModelFactory
 
 private const val KEY_ID = "keyId"
 
-class FilmsFragment : Fragment() {
+class FilmsFragment : Fragment(), KoinComponent {
 
     private lateinit var image: ImageView
     private lateinit var name: TextView
@@ -26,18 +26,7 @@ class FilmsFragment : Fragment() {
     private lateinit var year: TextView
     private lateinit var rating: TextView
     private lateinit var description: TextView
-    private var viewModel: InfoFilmViewModel? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(
-            this,
-            InfoFilmViewModelFactory(id = arguments?.getInt(KEY_ID) ?: 0)
-        ).get(
-            InfoFilmViewModel::class.java
-        )
-        super.onCreate(savedInstanceState)
-    }
-
+    private val viewModel: InfoFilmViewModel by inject<InfoFilmViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +41,7 @@ class FilmsFragment : Fragment() {
         rating = view.findViewById(R.id.rating)
         description = view.findViewById(R.id.description)
 
-        viewModel?.filmsModel?.observe(viewLifecycleOwner) {
+        viewModel.filmsModel.observe(viewLifecycleOwner) {
 
             name.text = getString(R.string.card_name)+it.name
             localizedName.text = it.localizedName
@@ -67,12 +56,6 @@ class FilmsFragment : Fragment() {
                 .into(image)
 
         }
-
-
-        lifecycleScope.launch {
-            Log.d("checkResult", ":FilmsFragment is work")
-        }
-
         return view
     }
 

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val TAG = "Загрузка успешна"
 
 // парсинг jsonFile
-class FilmsRepository private constructor() {
+class FilmsRepository {
 
     private var filmsListParseJson = listOf<FilmsModel>()
     private var listGenres = listOf<String>()
@@ -22,15 +22,15 @@ class FilmsRepository private constructor() {
 
     private val filmsApi = retrofit.create(FilmsAPI::class.java)
 
-    //получаем весь список моделей фильмов
+    //получаем список всех фильмов
     private suspend fun getFullFilmsList(): List<FilmsModel> {
-        // получили список всех фильмов
         if (filmsListParseJson.isEmpty()) {
             filmsListParseJson = filmsApi.getAllFilmsModel().films
         }
         return filmsListParseJson
     }
 
+    // получаем список фильмов по жанру
     suspend fun getFilmsByGenre(genre: String?): List<FilmsModel> {
         if (genre == null) return getFullFilmsList()
         return getFullFilmsList().filter { it.genres.contains(genre) }
@@ -54,17 +54,17 @@ class FilmsRepository private constructor() {
 //        return filmListDao.getIdFilms(id.toString()).firstOrNull()
 //    }
 
-    companion object {
-        private var INSTANSE: FilmsRepository? = null
-
-        fun getInstanse(): FilmsRepository {
-            return synchronized(this) {
-                val currentInstanse = INSTANSE ?: FilmsRepository()
-                INSTANSE = currentInstanse
-                currentInstanse
-            }
-        }
-    }
+//    companion object {
+//        private var INSTANSE: FilmsRepository? = null
+//
+//        fun getInstanse(): FilmsRepository {
+//            return synchronized(this) {
+//                val currentInstanse = INSTANSE ?: FilmsRepository()
+//                INSTANSE = currentInstanse
+//                currentInstanse
+//            }
+//        }
+//    }
 
 
 

@@ -48,9 +48,13 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-//    val koin_version = "4.0.0-RC2"
-//    implementation("io.insert-koin:koin-core:$koin_version")
-//    testImplementation("io.insert-koin:koin-test:$koin_version")
+    val koin_version = "4.0.0-RC2"
+    implementation("io.insert-koin:koin-core:$koin_version")
+    implementation("io.insert-koin:koin-android:$koin_version")
+    testImplementation("io.insert-koin:koin-test:$koin_version")
 
     implementation(project(":filmsList"))
+    implementation(project(":filmDomain"))
+    implementation(project(":filmDetails"))
+    implementation(project(":filmData"))
 }
