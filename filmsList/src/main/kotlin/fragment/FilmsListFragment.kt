@@ -60,19 +60,16 @@ class FilmsListFragment : Fragment(), KoinComponent {
         viewModel.listFilmsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is FilmListViewModelState.Error -> {
-                    showOrHideGifLoading(false)
                     showOrHideErrorContainer(true)
                     textError.text = state.message
                 }
 
                 FilmListViewModelState.Loading -> {
                     showOrHideErrorContainer(false)
-                    showOrHideGifLoading(true)
                 }
 
                 is FilmListViewModelState.Success -> {
                     showOrHideErrorContainer(false)
-                    showOrHideGifLoading(false)
                     listFilms.adapter =
                         ImageNameRecyclerAdapter(
                             filmListModel = state.filmsList,
@@ -96,10 +93,7 @@ class FilmsListFragment : Fragment(), KoinComponent {
         errorContainer.isVisible = isShow
     }
 
-    private fun showOrHideGifLoading(isShow: Boolean) {
-        loadingContainer.isVisible = isShow
-        Glide.with(this)
-            .load(R.drawable.cat_dance)
-            .into(imageCatGif)
+    private fun setColorGenre(isShow: Boolean){
+        listGenres.setBackgroundColor(resources.getColor(R.color.yellow))
     }
 }

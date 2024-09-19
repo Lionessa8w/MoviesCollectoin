@@ -3,4 +3,5 @@
     <string name="text_error">Ошибка подключения сети</string>
     <string name="button_error">ПОВТОРИТЬ</string>
     <string name="description">description</string>
+    <string name="genre">Жанры</string>
 </resources>

@@ -16,6 +16,6 @@ dependencies{
     implementation("io.insert-koin:koin-android:$koin_version")
     testImplementation("io.insert-koin:koin-test:$koin_version")
 
-    implementation(project(":filmData"))
+
     implementation(project(":filmDomain"))
 }

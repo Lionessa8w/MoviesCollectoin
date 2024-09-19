@@ -9,10 +9,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmsList.R
-import model.FilmsModel
+import model.FilmsModelDomain
 
 class ImageNameRecyclerAdapter(
-    private val filmListModel: List<FilmsModel>,
+    private val filmListModel: List<FilmsModelDomain>,
     private val onCardClicked: (id: Int) -> Unit
 ) :
     RecyclerView.Adapter<ImageNameRecyclerAdapter.ImageNameViewHolder>() {

@@ -54,7 +54,6 @@ class FilmsFragment : Fragment(), KoinComponent {
                 .centerCrop()
                 .placeholder(R.drawable.cat)
                 .into(image)
-
         }
         return view
     }

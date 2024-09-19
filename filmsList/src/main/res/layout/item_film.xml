@@ -9,8 +9,8 @@
     android:layout_marginBottom="8dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:background="#AFA1A1"
-    android:backgroundTint="#F1EEEE">
+    android:background="@color/white"
+    android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -53,39 +53,21 @@
             android:layout_height="100dp"
             android:gravity="center"
             android:ellipsize="end"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/drawable_movie_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:backgroundTint="#979292"
-            android:shadowColor="@color/white"
+            android:backgroundTint="@color/white"
+            android:shadowColor="@color/black"
             android:shadowDx="2"
             android:shadowDy="2"
             android:shadowRadius="3"
             android:rotationX="0"
-            android:background="#D5D2D2"
+            android:background="@color/white"
             android:alpha="0.7"
             android:maxLines="2"
-
-
             />
-
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="45dp"
-            app:srcCompat="@drawable/baseline_0"
-            android:id="@+id/imageLike"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="41dp"
-            app:srcCompat="@drawable/baseline_ignore_0"
-            android:id="@+id/imageView_ignore"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

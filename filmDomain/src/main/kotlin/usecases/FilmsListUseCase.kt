@@ -1,6 +1,7 @@
 package usecases
 
-import model.FilmsModel
+import model.FilmModelDomainMapper
+import model.FilmsModelDomain
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repositories.FilmsRepository
@@ -11,7 +12,9 @@ class FilmsListUseCase: KoinComponent {
     val repository: FilmsRepository by inject<FilmsRepository>()
 
     // получаем cписок фильмов по жанру
-    suspend fun getFilmsList(genre: String?): List<FilmsModel> {
+    suspend fun getFilmsList(genre: String?): List<FilmsModelDomain> {
+        val filmModel=repository.getFilmsByGenre(genre)
+        val modelDomain= FilmModelDomainMapper().invoke(filmModel)
         return repository.getFilmsByGenre(genre)
     }
 

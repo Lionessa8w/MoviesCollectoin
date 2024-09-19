@@ -1,7 +1,6 @@
-package ru.pervov.lovenail.utils
+package navigation
 
 interface NavigationHolder {
 
     fun doNavigation(navigationAction: NavigationAction)
-
 }

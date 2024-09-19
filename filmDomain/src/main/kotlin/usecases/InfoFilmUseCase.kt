@@ -1,6 +1,7 @@
 package usecases
 
 import model.FilmsModel
+import model.FilmsModelDomain
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import repositories.FilmsRepository

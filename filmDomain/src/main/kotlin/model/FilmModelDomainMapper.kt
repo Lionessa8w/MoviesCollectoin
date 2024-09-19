@@ -1,11 +1,9 @@
 package model
 
-import model.FilmsModel
+class FilmModelDomainMapper {
 
-class FilmModelMapper {
-
-    operator fun invoke(model: FilmsModel): model.FilmsModel {
-    return model.FilmsModel(
+    operator fun invoke(model: FilmsModel): model.FilmsModelDomain {
+    return FilmsModelDomain(
         id= model.id,
         localizedName = model.localizedName,
         name = model.name,
