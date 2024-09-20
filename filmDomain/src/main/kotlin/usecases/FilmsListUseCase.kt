@@ -14,7 +14,8 @@ class FilmsListUseCase: KoinComponent {
     // получаем cписок фильмов по жанру
     suspend fun getFilmsList(genre: String?): List<FilmsModelDomain> {
         val filmModel=repository.getFilmsByGenre(genre)
-        val modelDomain= FilmModelDomainMapper().invoke(filmModel)
+        val mapperDomain= FilmModelDomainMapper()
+
         return repository.getFilmsByGenre(genre)
     }
 

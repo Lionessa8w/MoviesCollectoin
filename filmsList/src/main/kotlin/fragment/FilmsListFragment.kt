@@ -10,11 +10,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmsList.R
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
@@ -46,8 +44,6 @@ class FilmsListFragment : Fragment(), KoinComponent {
         errorContainer = view.findViewById(R.id.container_error)
         textError = view.findViewById(R.id.text_error)
         buttonError = view.findViewById(R.id.button_error)
-        loadingContainer = view.findViewById(R.id.container_loading)
-        imageCatGif = view.findViewById(R.id.imageView_loading)
 
         buttonError.setOnClickListener {
             viewModel.getFilmList()

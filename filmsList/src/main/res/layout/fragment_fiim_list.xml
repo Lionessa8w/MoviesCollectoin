@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
@@ -16,14 +17,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:background="@color/blue"-->
+<!--            android:minHeight="?attr/actionBarSize"-->
+<!--            android:theme="?attr/actionBarTheme"-->
+<!--            app:title="@string/films"-->
+<!--            app:titleTextColor="@color/white"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />-->
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/genre"
-            android:textSize="35sp"
             android:paddingLeft="20dp"
-            android:textStyle="bold"
+            android:text="@string/genre"
             android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,12 +49,24 @@
             android:id="@+id/genres_list_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="10"
+            android:layout_weight="4"
             android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_genre" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/films"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"
+            android:textSize="35sp">
+
+        </TextView>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/films_list_recycler"
@@ -55,69 +81,47 @@
             app:layout_constraintTop_toBottomOf="@+id/genres_list_recycler"
             tools:listitem="@layout/item_film" />
 
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/container_error"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/black"
         android:clickable="false"
-        android:gravity="center"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/text_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@color/white"
+            android:background="@color/black"
+            android:paddingLeft="8dp"
             android:text="@string/text_error"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <Button
             android:id="@+id/button_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
+            android:background="@color/black"
+            android:paddingLeft="120dp"
             android:text="@string/button_error"
-            android:textColor="@color/black"
-            app:iconTint="@color/yellow"
+            android:textColor="@color/yellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_error"
             app:rippleColor="@color/black" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/container_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:clickable="false"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView_loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description"
-            android:src="@drawable/cat" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
