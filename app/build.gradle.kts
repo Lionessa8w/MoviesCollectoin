@@ -54,7 +54,7 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:$koin_version")
 
     implementation(project(":filmsList"))
-    implementation(project(":filmDomain"))
     implementation(project(":filmDetails"))
     implementation(project(":filmData"))
+    implementation(project(":filmDomain"))
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="card_year">Год : </string>
+    <string name="card_year"> год </string>
     <string name="card_name">Оригинальное название: </string>
-    <string name="card_rating">Рейтинг : </string>
+    <string name="card_rating"> КиноПоиск</string>
 </resources>
