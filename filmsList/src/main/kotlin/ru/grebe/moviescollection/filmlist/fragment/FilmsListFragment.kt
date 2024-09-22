@@ -4,19 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.moviescollectoin.filmsList.R
+import com.example.moviescollectoin.filmsList.databinding.FragmentFilmListBinding
+import navigation.NavigationAction
+import navigation.NavigationHolder
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
-import ru.grebe.moviescollection.filmdetails.fragment.FilmsFragment
 import ru.grebe.moviescollection.filmlist.recycler.GenresRecyclerAdapter
 import ru.grebe.moviescollection.filmlist.recycler.ImageNameRecyclerAdapter
 import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModelState
@@ -24,71 +21,83 @@ import ru.grebe.moviescollection.filmlist.viewmodel.FilmsListViewModel
 
 class FilmsListFragment : Fragment(), KoinComponent {
 
-    private lateinit var listGenres: RecyclerView
-    private lateinit var listFilms: RecyclerView
-    private lateinit var errorContainer: LinearLayout
-    private lateinit var buttonError: Button
-    private lateinit var textError: TextView
-
     private val viewModel: FilmsListViewModel by inject<FilmsListViewModel>()
+    private var binding: FragmentFilmListBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_fiim_list, container, false)
-        listGenres = view.findViewById(R.id.genres_list_recycler)
-        listFilms = view.findViewById(R.id.films_list_recycler)
-        errorContainer = view.findViewById(R.id.container_error)
-        textError = view.findViewById(R.id.text_error)
-        buttonError = view.findViewById(R.id.button_error)
+    ): View {
+        val binding = FragmentFilmListBinding.inflate(inflater, container, false)
+        this.binding = binding
+        return binding.root
 
-        buttonError.setOnClickListener {
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = binding ?: return
+
+        binding.buttonError.setOnClickListener {
             viewModel.getFilmList()
-
         }
-
-        listFilms.layoutManager = GridLayoutManager(context, 2)
-        listGenres.layoutManager = LinearLayoutManager(context)
+        binding.genresListRecycler.layoutManager = GridLayoutManager(context, 2)
+        binding.filmsListRecycler.layoutManager = LinearLayoutManager(context)
 
         viewModel.listFilmsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is FilmDetailsViewModelState.Error -> {
                     showOrHideErrorContainer(true)
-                    textError.text = state.message
+                    showOrHideLoadingContainer(false)
+                    binding.textError.text = state.message
                 }
 
                 FilmDetailsViewModelState.Loading -> {
                     showOrHideErrorContainer(false)
+                    showOrHideLoadingContainer(true)
                 }
 
                 is FilmDetailsViewModelState.Success -> {
                     showOrHideErrorContainer(false)
-                    listFilms.adapter =
+                    showOrHideLoadingContainer(false)
+                    binding.filmsListRecycler.adapter =
                         ImageNameRecyclerAdapter(
                             filmListModel = state.filmsList,
                             onCardClicked = { id ->
-                                requireActivity().supportFragmentManager.beginTransaction()
-                                    .replace(R.id.container_root, FilmsFragment.newInstance(id))
-                                    .addToBackStack(null).commit()
+                                openFilmDetailsFragment(id)
                             }
                         )
-                    listGenres.adapter = GenresRecyclerAdapter(state.genresList) { genre ->
-                        viewModel.setCurrentGenre(genre)
-                    }
+
+                    binding.genresListRecycler.adapter =
+                        GenresRecyclerAdapter(state.genresList) { genre ->
+                            viewModel.setCurrentGenre(genre)
+
+                        }
                 }
             }
         }
-
-        return view
     }
+
+    private fun openFilmDetailsFragment(id: Int?) {
+        (activity as? NavigationHolder)?.doNavigation(
+            NavigationAction.OpenFilmDetailsFragment(id)
+        )
+    }
+
 
     private fun showOrHideErrorContainer(isShow: Boolean) {
-        errorContainer.isVisible = isShow
+        val binding= binding ?: return
+        binding.containerError.isVisible= isShow
     }
 
-    private fun setColorGenre(isShow: Boolean){
-        listGenres.setBackgroundColor(resources.getColor(R.color.yellow))
+    private fun showOrHideLoadingContainer(isShow: Boolean) {
+        val binding= binding ?: return
+        binding.containerLoading.isVisible = isShow
+    }
+
+    private fun setColorGenre(isShow: Boolean) {
+        val binding=binding ?: return
+        binding.genresListRecycler.setBackgroundColor(resources.getColor(R.color.yellow))
     }
 }

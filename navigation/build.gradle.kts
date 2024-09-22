@@ -5,6 +5,3 @@ plugins {
 android {
     namespace = "com.example.moviescollectoin.navigation"
 }
-
-dependencies {
-}

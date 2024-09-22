@@ -1,5 +1,7 @@
 package ru.grebe.moviescollection.filmlist.viewmodel
 
+import androidx.core.graphics.toColor
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

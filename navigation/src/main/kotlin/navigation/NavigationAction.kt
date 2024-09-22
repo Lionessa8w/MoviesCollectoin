@@ -4,5 +4,5 @@ sealed class NavigationAction {
 
 
     class OpenFilmsListFragment() : NavigationAction()
-    class OpenFilmsFragment() : NavigationAction()
+    class OpenFilmDetailsFragment(val id: Int?) : NavigationAction()
 }

@@ -6,6 +6,9 @@ plugins {
 
 android {
     namespace = "com.example.moviescollectoin.filmDetails"
+    buildFeatures {
+        viewBinding=true
+    }
 }
 dependencies{
     //glide

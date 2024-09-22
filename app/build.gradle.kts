@@ -57,4 +57,5 @@ dependencies {
     implementation(project(":filmDetails"))
     implementation(project(":filmData"))
     implementation(project(":filmDomain"))
+    implementation(project(":navigation"))
 }
