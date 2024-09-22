@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmsList.R
@@ -20,7 +19,8 @@ class ImageNameRecyclerAdapter(
     class ImageNameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val filmImage: ImageView = itemView.findViewById(R.id.drawable_movie_item)
         val filmLocalized: TextView = itemView.findViewById(R.id.localized_name_item)
-        val imageFilmRoot: CardView = itemView.findViewById(R.id.film_image_root)
+        // ошибка
+        val imageFilmRoot: RecyclerView = itemView.findViewById(R.id.film_image_root)
 
     }
 

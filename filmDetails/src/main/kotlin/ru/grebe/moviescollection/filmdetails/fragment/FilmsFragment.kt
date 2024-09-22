@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmDetails.R
+import com.example.moviescollectoin.filmDetails.databinding.FilmInfoScrollBinding
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModelFactory
@@ -19,13 +20,16 @@ private const val KEY_ID = "keyId"
 
 class FilmsFragment : Fragment(), KoinComponent {
 
-    private lateinit var image: ImageView
-    private lateinit var localizedName: TextView
-    private lateinit var year: TextView
-    private lateinit var rating: TextView
-    private lateinit var description: TextView
-    private lateinit var viewModel: InfoFilmViewModel
-    private lateinit var genre: TextView
+//    private lateinit var image: ImageView
+//    private lateinit var localizedName: TextView
+//    private lateinit var year: TextView
+//    private lateinit var rating: TextView
+//    private lateinit var description: TextView
+//    private lateinit var viewModel: InfoFilmViewModel
+//    private lateinit var genre: TextView
+
+    private var binding: FilmInfoScrollBinding? = null
+    private var viewModel: InfoFilmViewModel? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,28 +43,48 @@ class FilmsFragment : Fragment(), KoinComponent {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.film_info_scroll, container, false)
-        image = view.findViewById(R.id.image)
-        localizedName = view.findViewById(R.id.localized_name)
-        year = view.findViewById(R.id.year)
-        rating = view.findViewById(R.id.rating)
-        description = view.findViewById(R.id.description)
-        genre = view.findViewById(R.id.genre)
+    ): View {
 
-        viewModel.filmsModel.observe(viewLifecycleOwner) {
-            localizedName.text = it.localizedName
-            year.text = it.year.toString() + getString(R.string.card_year)
-            rating.text = it.rating.toString() + getString(R.string.card_rating) + " "
-            description.text = it.description
-            genre.text = it.genres.first() + ", "
-            Glide.with(this)
-                .load(it.imageUrl)
-                .centerCrop()
-                .placeholder(R.drawable.cat)
-                .into(image)
+        val binding = FilmInfoScrollBinding.inflate(inflater, container, false)
+        this.binding = binding
+        return binding.root
+
+//        val view = inflater.inflate(R.layout.film_info_scroll, container, false)
+//        image = view.findViewById(R.id.image)
+//        localizedName = view.findViewById(R.id.localized_name)
+//        year = view.findViewById(R.id.year)
+//        rating = view.findViewById(R.id.rating)
+//        description = view.findViewById(R.id.description)
+//        genre = view.findViewById(R.id.genre)
+//
+//        viewModel.filmsModel.observe(viewLifecycleOwner) {
+//            localizedName.text = it.localizedName
+//            year.text = it.year.toString() + getString(R.string.card_year)
+//            rating.text = it.rating.toString() + getString(R.string.card_rating) + " "
+//            description.text = it.description
+//            genre.text = it.genres.first() + ", "
+//            Glide.with(this)
+//                .load(it.imageUrl)
+//                .centerCrop()
+//                .placeholder(R.drawable.cat)
+//                .into(image)
+//        }
+//        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = binding ?: return
+        val viewModel= viewModel ?: return
+
+        viewModel.filmsModel.observe(viewLifecycleOwner){
+
+           Glide.with(this)
+               .load(it.imageUrl)
+               .centerCrop()
+               .placeholder(R.drawable.cat)
+               .into(binding.image)
         }
-        return view
     }
 
     companion object {

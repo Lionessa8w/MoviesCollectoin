@@ -27,10 +27,8 @@ class FilmsListFragment : Fragment(), KoinComponent {
     private lateinit var listGenres: RecyclerView
     private lateinit var listFilms: RecyclerView
     private lateinit var errorContainer: LinearLayout
-    private lateinit var loadingContainer: LinearLayout
     private lateinit var buttonError: Button
     private lateinit var textError: TextView
-    private lateinit var imageCatGif: ImageView
 
     private val viewModel: FilmsListViewModel by inject<FilmsListViewModel>()
 
