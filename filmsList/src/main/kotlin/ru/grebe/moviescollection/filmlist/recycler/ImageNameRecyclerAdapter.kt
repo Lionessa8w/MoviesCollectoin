@@ -20,7 +20,7 @@ class ImageNameRecyclerAdapter(
         val filmImage: ImageView = itemView.findViewById(R.id.drawable_movie_item)
         val filmLocalized: TextView = itemView.findViewById(R.id.localized_name_item)
         // ошибка
-        val imageFilmRoot: RecyclerView = itemView.findViewById(R.id.film_image_root)
+        val imageFilmRoot: View = itemView.findViewById(R.id.film_image_root)
 
     }
 
