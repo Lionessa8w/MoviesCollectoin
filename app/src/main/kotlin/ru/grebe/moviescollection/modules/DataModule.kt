@@ -1,12 +1,12 @@
 package ru.grebe.moviescollection.modules
 
 import org.koin.dsl.module
-import ru.grebe.moviescollection.filmdata.repositories.FilmsRepository
+import ru.grebe.moviescollection.filmdata.repositories.FilmsRepositoryImpl
 
 //репозотории
 
 val dataModule= module {
-    single<FilmsRepository> {
-        FilmsRepository()
+    single<FilmsRepositoryImpl> {
+        FilmsRepositoryImpl()
     }
 }

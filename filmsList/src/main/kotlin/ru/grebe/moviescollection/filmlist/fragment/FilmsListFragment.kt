@@ -18,6 +18,7 @@ import ru.grebe.moviescollection.filmlist.recycler.GenresRecyclerAdapter
 import ru.grebe.moviescollection.filmlist.recycler.ImageNameRecyclerAdapter
 import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModelState
 import ru.grebe.moviescollection.filmlist.viewmodel.FilmsListViewModel
+import toolbar.ToolbarHolder
 
 class FilmsListFragment : Fragment(), KoinComponent {
 
@@ -68,6 +69,7 @@ class FilmsListFragment : Fragment(), KoinComponent {
                                 openFilmDetailsFragment(id)
                             }
                         )
+                    (activity as ToolbarHolder).changeToolbarTitle(state.filmsList.toString())
 
                     binding.genresListRecycler.adapter =
                         GenresRecyclerAdapter(state.genresList) { genre ->
@@ -87,17 +89,17 @@ class FilmsListFragment : Fragment(), KoinComponent {
 
 
     private fun showOrHideErrorContainer(isShow: Boolean) {
-        val binding= binding ?: return
-        binding.containerError.isVisible= isShow
+        val binding = binding ?: return
+        binding.containerError.isVisible = isShow
     }
 
     private fun showOrHideLoadingContainer(isShow: Boolean) {
-        val binding= binding ?: return
+        val binding = binding ?: return
         binding.containerLoading.isVisible = isShow
     }
 
     private fun setColorGenre(isShow: Boolean) {
-        val binding=binding ?: return
+        val binding = binding ?: return
         binding.genresListRecycler.setBackgroundColor(resources.getColor(R.color.yellow))
     }
 }

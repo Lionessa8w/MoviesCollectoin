@@ -9,10 +9,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.moviescollectoin.R
 import navigation.NavigationAction
 import navigation.NavigationHolder
+import toolbar.ToolbarHolder
 
 class NavigationHolderImpl (
     activity: Activity
-) : NavigationHolder {
+) : NavigationHolder, ToolbarHolder {
 
     private val navController by lazy {
         Navigation.findNavController(activity, R.id.nav_host_fragment)
@@ -24,7 +25,6 @@ class NavigationHolderImpl (
     fun setUp(){
         toolbar.setupWithNavController(navController)
 
-        //костыль
         toolbar.navigationIcon?.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN)
 
 
@@ -37,6 +37,10 @@ class NavigationHolderImpl (
             is NavigationAction.OpenFilmsListFragment ->
                 navController.navigate(R.id.action_global_openFilmsListFragment)
         }
+    }
+
+    override fun changeToolbarTitle(newTitle: String) {
+        toolbar.title = newTitle
     }
 
 }

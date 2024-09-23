@@ -6,29 +6,16 @@ import com.example.moviescollectoin.R
 import navigation.NavigationAction
 import navigation.NavigationHolder
 import ru.grebe.moviescollection.navigation.NavigationHolderImpl
+import toolbar.ToolbarHolder
 
 
-class MainActivity : AppCompatActivity(), NavigationHolder {
+class MainActivity : AppCompatActivity(), NavigationHolder, ToolbarHolder {
 
     private val navigationHolderImpl = NavigationHolderImpl(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_films)
-
-//        //toolbar init
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
-//        title = com.example.moviescollectoin.filmsList.R.string.films.toString()
-
-//        if (savedInstanceState== null){
-//            doNavigation(NavigationAction.OpenFilmsListFragment())
-//        }
-
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container_root, FilmsListFragment()).commit()
-//        }
     }
 
     override fun onResume() {
@@ -38,5 +25,9 @@ class MainActivity : AppCompatActivity(), NavigationHolder {
 
     override fun doNavigation(navigationAction: NavigationAction) {
         navigationHolderImpl.doNavigation(navigationAction)
+    }
+
+    override fun changeToolbarTitle(newTitle: String) {
+        navigationHolderImpl.changeToolbarTitle(newTitle)
     }
 }

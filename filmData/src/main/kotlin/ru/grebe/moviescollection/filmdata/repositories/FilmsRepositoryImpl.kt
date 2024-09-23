@@ -7,7 +7,7 @@ import ru.grebe.moviescollection.filmdata.model.FilmsAPI
 import ru.grebe.moviescollection.filmdata.model.FilmsModel
 
 // парсинг jsonFile
-class FilmsRepository {
+class FilmsRepositoryImpl {
 
     private var filmsListParseJson = listOf<FilmsModel>()
     private var listGenres = listOf<String>()

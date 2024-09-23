@@ -4,12 +4,12 @@ import ru.grebe.moviescollection.filmdomain.model.FilmModelDomainMapper
 import ru.grebe.moviescollection.filmdomain.model.FilmsModelDomain
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import ru.grebe.moviescollection.filmdata.repositories.FilmsRepository
+import ru.grebe.moviescollection.filmdata.repositories.FilmsRepositoryImpl
 
 
 class FilmsListUseCase: KoinComponent {
 
-    val repository: FilmsRepository by inject<FilmsRepository>()
+    val repository: FilmsRepositoryImpl by inject<FilmsRepositoryImpl>()
 
     // получаем cписок фильмов по жанру
     suspend fun getFilmsList(genre: String?): List<FilmsModelDomain> {
