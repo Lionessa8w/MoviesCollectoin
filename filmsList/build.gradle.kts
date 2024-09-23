@@ -22,5 +22,4 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:$koin_version")
 
     implementation(project(":filmDomain"))
-    implementation(project(":filmDetails"))
 }

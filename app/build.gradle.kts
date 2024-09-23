@@ -53,6 +53,9 @@ dependencies {
     implementation("io.insert-koin:koin-android:$koin_version")
     testImplementation("io.insert-koin:koin-test:$koin_version")
 
+    implementation ("com.android.support:design:34.1.0")
+
+
     implementation(project(":filmsList"))
     implementation(project(":filmDetails"))
     implementation(project(":filmData"))

@@ -22,9 +22,9 @@ class FilmsListViewModel : ViewModel(), KoinComponent {
     private val useCase: FilmsListUseCase by inject<FilmsListUseCase>()
 
 
-    private val coroutineExceptionHandler =
-        viewModelScope.launch{
-            CoroutineExceptionHandler { _, throwable ->
+    private val coroutineExceptionHandler: CoroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            viewModelScope.launch {
                 _listFilmsState.emit(
                     FilmListViewModelState.Error(
                         throwable.localizedMessage ?: throwable.message ?: ""
@@ -43,7 +43,8 @@ class FilmsListViewModel : ViewModel(), KoinComponent {
 
     fun getFilmList(newGenre: String?) {
         getFilmListJob?.cancel()
-        val oldGenre = (listFilmsState.value as? FilmListViewModelState.Success)?.selectedGenre
+        val oldStateSuccess = (listFilmsState.value as? FilmListViewModelState.Success)
+        val oldGenre = oldStateSuccess?.selectedGenre
         val currentGenre = if (oldGenre != null && oldGenre == newGenre) {
             null
         } else {
@@ -51,12 +52,14 @@ class FilmsListViewModel : ViewModel(), KoinComponent {
         }
 
         getFilmListJob = viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            _listFilmsState.emit(FilmListViewModelState.Loading)
-            val genresList = useCase.getListGenres()
+            if (oldStateSuccess == null) _listFilmsState.emit(FilmListViewModelState.Loading)
             val filmsModel = useCase.getFilmsList(currentGenre)
+            val genreList =
+                oldStateSuccess?.genresList ?: filmsModel.map { it.genres }.flatten().toSet()
+                    .toList()
             _listFilmsState.emit(
                 FilmListViewModelState.Success(
-                    genresList = genresList,
+                    genresList = genreList,
                     filmsList = filmsModel,
                     selectedGenre = currentGenre
                 )

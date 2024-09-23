@@ -9,9 +9,6 @@ import ru.grebe.moviescollection.filmdata.model.FilmsModel
 /**  парсинг jsonFile **/
 class FilmsRepositoryImpl {
 
-    private var filmsListParseJson = listOf<FilmsModel>()
-    private var listGenres = listOf<String>()
-
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .baseUrl("https://s3-eu-west-1.amazonaws.com/sequeniatesttask/").build()
@@ -20,10 +17,7 @@ class FilmsRepositoryImpl {
 
     /** получаем список всех фильмов **/
     private suspend fun getFullFilmsList(): List<FilmsModel> {
-        if (filmsListParseJson.isEmpty()) {
-            filmsListParseJson = filmsApi.getAllFilmsModel().films
-        }
-        return filmsListParseJson
+        return filmsApi.getAllFilmsModel().films
     }
 
     /** получаем список фильмов по жанру **/
@@ -32,19 +26,8 @@ class FilmsRepositoryImpl {
         return getFullFilmsList().filter { it.genres.contains(genre) }
     }
 
-
-    /** получить список жанров **/
-    suspend fun getListGenres(): List<String> {
-        listGenres =
-            getFullFilmsList().map { filmsModel -> filmsModel.genres }.flatten().toSet().toList()
-
-        return listGenres
+    /** получить фильм по id */
+    suspend fun getFilmInfo(id: Int): FilmsModel? {
+        return getFullFilmsList().firstOrNull() { it.id == id }
     }
-
-    suspend fun getFilmInfo(id: Int): FilmsModel {
-        return getFullFilmsList().first() { it.id == id }
-
-    }
-
-
 }

@@ -3,5 +3,7 @@
     <string name="card_year"> год </string>
     <string name="card_name">Оригинальное название: </string>
     <string name="card_rating"> КиноПоиск</string>
+    <string name="text_error">Ошибка подключения сети</string>
+    <string name="button_error">ПОВТОРИТЬ</string>
 
 </resources>
