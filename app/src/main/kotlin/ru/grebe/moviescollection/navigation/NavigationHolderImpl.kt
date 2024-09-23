@@ -3,15 +3,18 @@ package ru.grebe.moviescollection.navigation
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.moviescollectoin.R
 import navigation.NavigationAction
 import navigation.NavigationHolder
+import ru.grebe.moviescollection.filmdetails.fragment.ARGUMENT_ID_KEY
 import toolbar.ToolbarHolder
 
-class NavigationHolderImpl (
+class NavigationHolderImpl(
     activity: Activity
 ) : NavigationHolder, ToolbarHolder {
 
@@ -22,18 +25,26 @@ class NavigationHolderImpl (
     private val toolbar by lazy {
         activity.findViewById<Toolbar>(R.id.toolbar)
     }
-    fun setUp(){
+
+    fun setUp() {
         toolbar.setupWithNavController(navController)
 
-        toolbar.navigationIcon?.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
 
-
+            /** не поняла как менять цвет, поэтому закостылила */
+            toolbar.navigationIcon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
+        }
     }
 
     override fun doNavigation(navigationAction: NavigationAction) {
-        when(navigationAction){
+        when (navigationAction) {
             is NavigationAction.OpenFilmDetailsFragment ->
-                navController.navigate(R.id.action_global_openFilmDetailFragment)
+                navController.navigate(
+                    R.id.action_global_openFilmDetailFragment,
+                    args = Bundle().apply {
+                        putInt(ARGUMENT_ID_KEY, navigationAction.id)
+                    })
+
             is NavigationAction.OpenFilmsListFragment ->
                 navController.navigate(R.id.action_global_openFilmsListFragment)
         }

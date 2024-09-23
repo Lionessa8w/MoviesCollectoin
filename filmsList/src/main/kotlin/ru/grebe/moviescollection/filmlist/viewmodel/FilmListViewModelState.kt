@@ -1,8 +1,6 @@
 package ru.grebe.moviescollection.filmlist.viewmodel
 
 import ru.grebe.moviescollection.filmdomain.model.FilmsModelDomain
-import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModelState
-
 
 sealed class FilmListViewModelState {
     object Loading : FilmListViewModelState()
@@ -11,6 +9,7 @@ sealed class FilmListViewModelState {
 
     class Success(
         val genresList: List<String>,
-        val filmsList: List<FilmsModelDomain>
+        val filmsList: List<FilmsModelDomain>,
+        val selectedGenre: String?
     ) : FilmListViewModelState()
 }

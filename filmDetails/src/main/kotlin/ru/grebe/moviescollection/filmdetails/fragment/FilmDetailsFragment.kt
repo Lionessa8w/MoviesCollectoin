@@ -6,26 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.moviescollectoin.filmDetails.R
 import com.example.moviescollectoin.filmDetails.databinding.FilmInfoScrollBinding
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModelFactory
-import ru.grebe.moviescollection.filmdetails.viewmodel.InfoFilmViewModel
+import ru.grebe.moviescollection.filmdetails.viewmodel.FilmDetailsViewModel
+import toolbar.ToolbarHolder
 
-private const val KEY_ID = "keyId"
+const val ARGUMENT_ID_KEY = "argument_id_key"
 
 class FilmDetailsFragment : Fragment(), KoinComponent {
 
     private var binding: FilmInfoScrollBinding? = null
-    private var viewModel: InfoFilmViewModel? = null
+    private var viewModel: FilmDetailsViewModel? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(
-            this, FilmDetailsViewModelFactory(id = arguments?.getInt(KEY_ID) ?: 0)
-        ).get(InfoFilmViewModel::class.java)
+            this, FilmDetailsViewModelFactory(id = arguments?.getInt(ARGUMENT_ID_KEY) ?: 0)
+        ).get(FilmDetailsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -44,29 +47,29 @@ class FilmDetailsFragment : Fragment(), KoinComponent {
         val binding = binding ?: return
         val viewModel = viewModel ?: return
 
-        viewModel.filmsModel.observe(viewLifecycleOwner) {
+        Glide.with(this)
+//            .load(R.drawable.)
+//            .into()
 
-            binding.localizedName.text = it.localizedName
-            binding.year.text = it.year.toString() +" "+ getString(R.string.card_year)
-            val rating= (it.rating!!*10.0).toInt()/10.0
-            binding.rating.text = rating.toString() +" "+getString(R.string.card_rating)
-            binding.description.text = it.description
-            binding.genre.text = it.genres.first() + ", "
-            Glide.with(this)
-                .load(it.imageUrl)
-                .centerCrop()
-                .placeholder(R.drawable.cat)
-                .into(binding.image)
-        }
-    }
+        lifecycleScope.launch {
+            viewModel.filmsModel.collect {
 
-    companion object {
-        fun newInstance(id: Int): FilmDetailsFragment {
-            val args = Bundle()
-            args.putInt(KEY_ID, id)
-            val fragment = FilmDetailsFragment()
-            fragment.arguments = args
-            return fragment
+                binding.localizedName.text = it.localizedName
+                binding.year.text = it.year.toString() + " " + getString(R.string.card_year)
+                val rating = (it.rating!! * 10.0).toInt() / 10.0
+                binding.rating.text = rating.toString() + " " + getString(R.string.card_rating)
+                binding.description.text = it.description
+                binding.genre.text = it.genres.first() + ", "
+
+                Glide.with(this@FilmDetailsFragment)
+                    .load(it.imageUrl)
+                    .centerCrop()
+                    .placeholder(R.drawable.cat)
+                    .into(binding.image)
+
+                (activity as? ToolbarHolder)?.changeToolbarTitle(it.name ?: "")
+            }
         }
+
     }
 }

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/filmsListFragment">
 
     <fragment
-        android:label="Хост"
         android:id="@+id/hostFragment"
-        android:name="ru.grebe.moviescollection.host.HostFragment">
+        android:name="ru.grebe.moviescollection.host.HostFragment"
+        android:label="Хост">
 
     </fragment>
 
     <fragment
-        android:label="Лист"
         android:id="@+id/filmsListFragment"
-        android:name="ru.grebe.moviescollection.filmlist.fragment.FilmsListFragment">
+        android:name="ru.grebe.moviescollection.filmlist.fragment.FilmsListFragment"
+        android:label="Фильмы">
 
     </fragment>
 
     <fragment
-        android:label="Фильм"
         android:id="@+id/filmDetailFragment"
-        android:name="ru.grebe.moviescollection.filmdetails.fragment.FilmDetailsFragment">
-
+        android:name="ru.grebe.moviescollection.filmdetails.fragment.FilmDetailsFragment"
+        android:label="Детали фильма">
     </fragment>
 
     <action

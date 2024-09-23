@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.grebe.moviescollection.filmdata.model.FilmsAPI
 import ru.grebe.moviescollection.filmdata.model.FilmsModel
 
-// парсинг jsonFile
+/**  парсинг jsonFile **/
 class FilmsRepositoryImpl {
 
     private var filmsListParseJson = listOf<FilmsModel>()
@@ -18,7 +18,7 @@ class FilmsRepositoryImpl {
 
     private val filmsApi = retrofit.create(FilmsAPI::class.java)
 
-    //получаем список всех фильмов
+    /** получаем список всех фильмов **/
     private suspend fun getFullFilmsList(): List<FilmsModel> {
         if (filmsListParseJson.isEmpty()) {
             filmsListParseJson = filmsApi.getAllFilmsModel().films
@@ -26,14 +26,14 @@ class FilmsRepositoryImpl {
         return filmsListParseJson
     }
 
-    // получаем список фильмов по жанру
+    /** получаем список фильмов по жанру **/
     suspend fun getFilmsByGenre(genre: String?): List<FilmsModel> {
         if (genre == null) return getFullFilmsList()
         return getFullFilmsList().filter { it.genres.contains(genre) }
     }
 
 
-    //получить список жанров
+    /** получить список жанров **/
     suspend fun getListGenres(): List<String> {
         listGenres =
             getFullFilmsList().map { filmsModel -> filmsModel.genres }.flatten().toSet().toList()
@@ -42,26 +42,9 @@ class FilmsRepositoryImpl {
     }
 
     suspend fun getFilmInfo(id: Int): FilmsModel {
-        return getFullFilmsList().first { it.id == id }
+        return getFullFilmsList().first() { it.id == id }
 
     }
-
-//    suspend fun getIdFilm(id: Int): FilmsStateEntity? {
-//        return filmListDao.getIdFilms(id.toString()).firstOrNull()
-//    }
-
-//    companion object {
-//        private var INSTANSE: FilmsRepository? = null
-//
-//        fun getInstanse(): FilmsRepository {
-//            return synchronized(this) {
-//                val currentInstanse = INSTANSE ?: FilmsRepository()
-//                INSTANSE = currentInstanse
-//                currentInstanse
-//            }
-//        }
-//    }
-
 
 
 }

@@ -8,11 +8,11 @@ import com.example.moviescollectoin.filmsList.R
 import com.example.moviescollectoin.filmsList.databinding.ItemFilmBinding
 import ru.grebe.moviescollection.filmdomain.model.FilmsModelDomain
 
-class ImageNameRecyclerAdapter(
+class FilmCardRecyclerAdapter(
     private val filmListModel: List<FilmsModelDomain>,
     private val onCardClicked: (id: Int) -> Unit
 ) :
-    RecyclerView.Adapter<ImageNameRecyclerAdapter.ImageNameViewHolder>() {
+    RecyclerView.Adapter<FilmCardRecyclerAdapter.ImageNameViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
