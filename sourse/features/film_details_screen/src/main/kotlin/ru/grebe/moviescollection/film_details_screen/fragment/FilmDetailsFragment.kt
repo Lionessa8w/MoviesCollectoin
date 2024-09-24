@@ -106,7 +106,6 @@ class FilmDetailsFragment : Fragment(), KoinComponent {
                 }
             }
         }
-
     }
 
     private fun showOrHideLoadingContainer(isShow: Boolean) {

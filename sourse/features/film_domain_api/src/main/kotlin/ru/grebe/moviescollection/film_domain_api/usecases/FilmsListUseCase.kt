@@ -9,9 +9,9 @@ import ru.grebe.moviescollection.film_data_api.repositories.FilmsRepositoryImpl
 
 class FilmsListUseCase : KoinComponent {
 
-    val repository: FilmsRepositoryImpl by inject<FilmsRepositoryImpl>()
+    private val repository: FilmsRepositoryImpl by inject<FilmsRepositoryImpl>()
 
-    // получаем cписок фильмов по жанру
+    /** получаем cписок фильмов по жанру*/
     suspend fun getFilmsList(genre: String?): List<FilmsModelDomain> {
         val filmModel = repository.getFilmsByGenre(genre)
         return filmModel.map { FilmModelDomainMapper().invoke(it) }

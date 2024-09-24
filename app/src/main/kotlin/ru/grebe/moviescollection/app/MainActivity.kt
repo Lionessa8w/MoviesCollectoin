@@ -39,8 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationHolder, ToolbarHolder, Snack
             R.string.text_error,
             Snackbar.LENGTH_LONG
         )
-        val buttonText=R.string.text_replay
-
         snackBar.setAction(R.string.text_replay) { onClick() }
         snackBar.setDuration(Int.MAX_VALUE)
         snackBar.show()

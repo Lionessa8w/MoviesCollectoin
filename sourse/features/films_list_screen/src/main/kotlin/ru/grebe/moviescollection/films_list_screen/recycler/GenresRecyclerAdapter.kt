@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.grebe.moviescollection.filmsList.R
 import ru.grebe.moviescollection.filmsList.databinding.ItemGenreBinding
+
 class GenresRecyclerAdapter(
     private val genres: List<String>,
     private val selectedGenre: String?,

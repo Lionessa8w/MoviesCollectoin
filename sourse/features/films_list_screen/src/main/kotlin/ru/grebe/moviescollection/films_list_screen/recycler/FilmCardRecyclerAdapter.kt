@@ -2,7 +2,6 @@ package ru.grebe.moviescollection.films_list_screen.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.grebe.moviescollection.filmsList.R

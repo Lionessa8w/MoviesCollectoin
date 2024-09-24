@@ -1,12 +1,12 @@
 package ru.grebe.moviescollection.film_domain_api.model
 
 data class FilmsModelDomain (
-    var id: Int? = null,
-    var localizedName: String? = null,
-    var name: String? = null,
-    var year: Int? = null,
-    var rating: Double? = null,
-    var imageUrl: String? = null,
-    var description: String? = null,
-    var genres: List<String> = arrayListOf()
+    val id: Int? = null,
+    val localizedName: String? = null,
+    val name: String? = null,
+    val year: Int? = null,
+    val rating: Double? = null,
+    val imageUrl: String? = null,
+    val description: String? = null,
+    val genres: List<String> = arrayListOf()
 )
