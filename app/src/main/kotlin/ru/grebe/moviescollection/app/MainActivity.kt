@@ -2,6 +2,7 @@ package ru.grebe.moviescollection.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColor
 import ru.grebe.moviescollection.R
 import com.google.android.material.snackbar.Snackbar
 import ru.grebe.moviescollection.navigation.NavigationAction
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity(), NavigationHolder, ToolbarHolder, Snack
             R.string.text_error,
             Snackbar.LENGTH_LONG
         )
+        val buttonText=R.string.text_replay
+
         snackBar.setAction(R.string.text_replay) { onClick() }
         snackBar.setDuration(Int.MAX_VALUE)
         snackBar.show()
