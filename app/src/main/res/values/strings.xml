@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MoviesCollectoin</string>
     <string name="text_error">Ошибка подключения сети</string>
+    <string name="text_replay">ПОВТОРИТЬ</string>
 </resources>

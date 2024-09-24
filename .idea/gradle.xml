@@ -22,11 +22,16 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/filmData" />
-            <option value="$PROJECT_DIR$/filmDetails" />
-            <option value="$PROJECT_DIR$/filmDomain" />
-            <option value="$PROJECT_DIR$/filmsList" />
-            <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/sourse" />
+            <option value="$PROJECT_DIR$/sourse/features" />
+            <option value="$PROJECT_DIR$/sourse/features/film_data_api" />
+            <option value="$PROJECT_DIR$/sourse/features/film_details_screen" />
+            <option value="$PROJECT_DIR$/sourse/features/film_domain_api" />
+            <option value="$PROJECT_DIR$/sourse/features/films_list_screen" />
+            <option value="$PROJECT_DIR$/sourse/utils" />
+            <option value="$PROJECT_DIR$/sourse/utils/navigation" />
+            <option value="$PROJECT_DIR$/sourse/utils/snackbar_holder" />
+            <option value="$PROJECT_DIR$/sourse/utils/toolbar_holder" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

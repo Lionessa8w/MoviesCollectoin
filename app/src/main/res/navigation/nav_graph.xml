@@ -5,22 +5,15 @@
     app:startDestination="@id/filmsListFragment">
 
     <fragment
-        android:id="@+id/hostFragment"
-        android:name="ru.grebe.moviescollection.host.HostFragment"
-        android:label="Хост">
-
-    </fragment>
-
-    <fragment
         android:id="@+id/filmsListFragment"
-        android:name="ru.grebe.moviescollection.filmlist.fragment.FilmsListFragment"
+        android:name="ru.grebe.moviescollection.films_list_screen.fragment.FilmsListFragment"
         android:label="Фильмы">
 
     </fragment>
 
     <fragment
         android:id="@+id/filmDetailFragment"
-        android:name="ru.grebe.moviescollection.filmdetails.fragment.FilmDetailsFragment"
+        android:name="ru.grebe.moviescollection.film_details_screen.fragment.FilmDetailsFragment"
         android:label="Детали фильма">
     </fragment>
 

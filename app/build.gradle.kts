@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.moviescollectoin"
+    namespace = "ru.grebe.moviescollection"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.moviescollectoin"
+        applicationId = "ru.grebe.moviescollection"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -43,7 +43,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -53,12 +52,17 @@ dependencies {
     implementation("io.insert-koin:koin-android:$koin_version")
     testImplementation("io.insert-koin:koin-test:$koin_version")
 
-    implementation ("com.android.support:design:34.1.0")
+    // utils
+    implementation(project(":sourse:utils:snackbar_holder"))
+    implementation(project(":sourse:utils:toolbar_holder"))
 
 
-    implementation(project(":filmsList"))
-    implementation(project(":filmDetails"))
-    implementation(project(":filmData"))
-    implementation(project(":filmDomain"))
-    implementation(project(":navigation"))
+    // screens
+    implementation(project(":sourse:features:film_details_screen"))
+    implementation(project(":sourse:features:films_list_screen"))
+
+    // module
+    implementation(project(":sourse:features:film_data_api"))
+    implementation(project(":sourse:features:film_domain_api"))
+    implementation(project(":sourse:utils:navigation"))
 }
