@@ -89,9 +89,12 @@ class FilmsListFragment : Fragment(), KoinComponent {
 
                         binding.genresListRecycler.adapter =
                             GenresRecyclerAdapter(
-                                /** метод устарел, как и upperCase, но работает
-                                 *  другого решения пока не нашла*/
-                                genres = state.genresList.map { it.capitalize() },
+                                genres = state.genresList,
+                                /** метод устарел, как и upperCase, работает,
+                                 * но перестает отображаться
+                                 * список фильмов,
+                                 * другого решения пока не нашла*/
+//                                    .map { it.capitalize() },
                                 selectedGenre = state.selectedGenre
                             ) { genre ->
                                 viewModel.setCurrentGenre(genre)
