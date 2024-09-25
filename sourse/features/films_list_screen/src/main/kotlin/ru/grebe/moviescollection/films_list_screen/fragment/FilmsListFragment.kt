@@ -57,6 +57,7 @@ class FilmsListFragment : Fragment(), KoinComponent {
             val isVisible = binding.genresListRecycler.isVisible
             binding.genresListRecycler.isVisible = !isVisible
             if (isVisible) {
+                /** сворачивание списка*/
                 binding.imageViewArrow.animate().rotation(180f).setDuration(100).start()
             } else {
                 binding.imageViewArrow.animate().rotation(0f).setDuration(100).start()
@@ -88,7 +89,9 @@ class FilmsListFragment : Fragment(), KoinComponent {
 
                         binding.genresListRecycler.adapter =
                             GenresRecyclerAdapter(
-                                genres = state.genresList,
+                                /** метод устарел, как и upperCase, но работает
+                                 *  другого решения пока не нашла*/
+                                genres = state.genresList.map { it.capitalize() },
                                 selectedGenre = state.selectedGenre
                             ) { genre ->
                                 viewModel.setCurrentGenre(genre)
