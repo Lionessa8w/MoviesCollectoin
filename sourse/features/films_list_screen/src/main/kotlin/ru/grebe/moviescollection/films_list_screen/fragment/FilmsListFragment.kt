@@ -92,9 +92,9 @@ class FilmsListFragment : Fragment(), KoinComponent {
                                 genres = state.genresList,
                                 /** метод устарел, как и upperCase, работает,
                                  * но перестает отображаться
-                                 * список фильмов,
+                                 * список фильмов
+                                 * (it.replaceFirstChar(Char::uppercase) тоже самое),
                                  * другого решения пока не нашла*/
-//                                    .map { it.capitalize() },
                                 selectedGenre = state.selectedGenre
                             ) { genre ->
                                 viewModel.setCurrentGenre(genre)
@@ -104,6 +104,7 @@ class FilmsListFragment : Fragment(), KoinComponent {
             }
         }
     }
+
 
     private fun openFilmDetailsFragment(id: Int) {
         (activity as? NavigationHolder)?.doNavigation(
