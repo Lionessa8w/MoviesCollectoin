@@ -90,11 +90,6 @@ class FilmsListFragment : Fragment(), KoinComponent {
                         binding.genresListRecycler.adapter =
                             GenresRecyclerAdapter(
                                 genres = state.genresList,
-                                /** метод устарел, как и upperCase, работает,
-                                 * но перестает отображаться
-                                 * список фильмов
-                                 * (it.replaceFirstChar(Char::uppercase) тоже самое),
-                                 * другого решения пока не нашла*/
                                 selectedGenre = state.selectedGenre
                             ) { genre ->
                                 viewModel.setCurrentGenre(genre)
